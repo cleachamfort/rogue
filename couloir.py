@@ -2,7 +2,7 @@ import pygame as pg
 import personnage
 
 
-def class(couloir):
+class Couloir:
     def __init__(self, cases):
         self.cases = cases
     def passage (self, x,y): #x,y est la position du personnage

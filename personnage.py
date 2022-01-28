@@ -5,8 +5,6 @@ import objets
 
 class Personnage:
     def __init__(self, xinit, yinit, vie, force, direction):
-        self.xinit = xinit
-        self.yinit = yinit
         self.vie = vie
         self.force = force
         self.x = xinit

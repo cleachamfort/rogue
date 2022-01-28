@@ -1,6 +1,6 @@
 #on commence par créer le sac et une classe objets 
 
-class sac:
+class Sac:
     def __init__(self,taille,capacite,contenu):
         #contenu est une liste, la taille est le nb actuel d'elts dans le sac
         self.taille = taille 
@@ -24,7 +24,7 @@ class sac:
     
 
 
-class objet:
+class Objet:
     def __init__(self,nature,valeur,description,position):
         self.nature = nature
         self.valeur = valeur 
@@ -32,7 +32,7 @@ class objet:
         self.position = position
     def manger(self):
         if self.nature == "nourriture":
-            if #le personnage a fait l'action de ramasser et que tu es devant:
+            if np.add(perso.position,perso.direction)==self.position and #il ramasse:
                 perso.satiete += self.valeur
         else : 
             return ("Ce n'est pas de la nourriture")
@@ -54,7 +54,7 @@ class objet:
                 perso.vie += self.valeur
     
     
-class piece(objet):
+class Piece(Objet):
     def __init__(self,):
         super(piece, self).__init__(nature,valeur,description)
     def soudoyer(self, seuil):
