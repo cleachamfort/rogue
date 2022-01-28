@@ -1,4 +1,6 @@
 import pygame as pg
+import personnage
+
 
 def class(couloir):
     def __init__(self, cases):
@@ -20,7 +22,7 @@ def class(couloir):
                 personnage.x = self.cases[i][0]
                 personnage.y = self.cases[i][1]
                 pg.display.update()
-                
+
 
 
         
