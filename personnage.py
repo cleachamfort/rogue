@@ -1,27 +1,27 @@
 import pygame as pg
 import numpy as np
 import objets
-
+import random as rd
 
 
 class Mechant : 
-    def __init__(self, xinit, yinit, vie, force)
+    def __init__(self, xinit, yinit, vie, force):
         self.vie = vie
         self.force = force
         self.x = xinit
         self.y = yinit
-    def deplacement (mechant):
-        while (running== True ):
-            direction = rd.randint(0,3)
-            if direction == 0 : 
-                #on considère que ça veut dire up 
-                mechant.y = mechant.y - 1
-            elif direction == 1 :
-                mechant.y=mechant.y - 1
-            elif direction == 2 :
-                mechant.x = mechant.x + 1 
-            else :
-                mechant.x =mechant.x + 1
+def deplacement_mechant (mechant):
+    while (running== True ):
+        direction = rd.randint(0,3)
+        if direction == 0 : 
+            #on considère que ça veut dire up 
+            mechant.y = mechant.y - 1
+        elif direction == 1 :
+            mechant.y=mechant.y - 1
+        elif direction == 2 :
+            mechant.x = mechant.x + 1 
+        else :
+            mechant.x =mechant.x + 1
 
 class Personnage:
     def __init__(self, xinit, yinit, vie, force):
@@ -34,7 +34,7 @@ class Personnage:
         global sac
         liste_objets = sac.contenu
         for obj in liste_objets :
-            if obj.position == self.x,self.y:
+            if obj.position [0]== self.x and obj.position[1]==self.y:
                     sac.add(obj)
                     break
 
