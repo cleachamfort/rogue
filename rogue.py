@@ -59,10 +59,11 @@ def draw_couloir(couloir):
         couloir_rect = pg.Rect(couloir[i][0]*W, couloir[i][1]*H, W, H)
         pg.draw.rect(screen, (255,127, 0), couloir_rect)
 
-perso = perso.Personnage(7,12,10,10,[0,1])
+perso = perso.Personnage(7,12,10,10)
 
 # enfin on boucle à l'infini pour faire le rendu de chaque image
-while running:
+while True:
+    direction=[0,0]
     # l'objet "clock" permet de limiter le nombre d'images par secondes
     # ici pour cette démo on demande 1 image par seconde
     clock.tick(5)
@@ -82,18 +83,18 @@ while running:
                 running = False
             elif event.key == pg.K_UP :
                 perso.y = perso.y - 1
-                perso.direction=np.array([1,0])
+                direction=np.array([1,0])
                 running=True
             elif event.key == pg.K_DOWN :
                 perso.y=perso.y + 1
-                perso.direction=np.array([-1,0])
+                direction=np.array([-1,0])
                 
             elif event.key == pg.K_RIGHT :
                 perso.x =perso.x + 1 
-                perso.direction=np.array([0,1])
+                direction=np.array([0,1])
             elif event.key == pg.K_LEFT :
                 perso.x =perso.x + 1
-                perso.direction=np.array([-1,0])
+                direction=np.array([-1,0])
         
 
         draw_background()
