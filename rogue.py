@@ -40,15 +40,18 @@ def draw_tile(x, y, color):
     pg.draw.rect(screen, color, rect)
 
 
-def draw_room(x, y, lenght, width):
+def draw_room(x, y, lenght, width, x_porte, y_porte):
     rect_haut = pg.Rect(x*W, y*H, W*width, H)
-    rect_gauche = pg.Rect(x*W, y*H, W, H*lenght)
-    rect_droite = pg.Rect((x+width)*W, y*H, W, H*(lenght+1))
-    rect_bas = pg.Rect(x*W, (y+lenght)*H, W*width, H)
     pg.draw.rect(screen, (0, 0, 255), rect_haut)
-    pg.draw.rect(screen, (0, 0, 255), rect_bas)
+    rect_gauche = pg.Rect(x*W, y*H, W, H*lenght)
     pg.draw.rect(screen, (0, 0, 255), rect_gauche)
+    rect_droite = pg.Rect((x + width)*W, y*H, W, H*(lenght+1))
+    rect_bas = pg.Rect(x*W, (y+lenght)*H, W*width, H)
+    rect_porte = pg.Rect(x_porte*W, y_porte*H, W, H)
+    pg.draw.rect(screen, (0, 0, 255), rect_bas)
     pg.draw.rect(screen, (0, 0, 255), rect_droite)
+    pg.draw.rect(screen, (139, 69, 19), rect_porte)
+
 
 def draw_couloir(couloir):
     for i in range(len(couloir)):
@@ -88,15 +91,17 @@ while True:
                 perso.x =perso.x + 1 
                 perso.direction=np.array([0,1])
             elif event.key == pg.K_LEFT :
-                perso.x =perso.x - 1
+                perso.x =perso.x + 1
                 perso.direction=np.array([-1,0])
         
 
         draw_background()
         draw_tile(perso.x, perso.y, (255, 0, 0))
     
+    draw_couloir([[16,11], [17, 11], [18,11], [19,11]])
 
-    draw_room(5, 7, 15, 12)
-    draw_couloir([[0,0], [0,1]])
+    draw_room(5, 7, 10, 10,15, 11)
+    draw_room(20, 7, 7, 8, 20, 11)
+
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()
