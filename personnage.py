@@ -3,7 +3,7 @@ import numpy as np
 import objets
 
 
-class personnage:
+class Personnage:
     def __init__(self, xinit, yinit, vie, force, direction):
         self.vie = vie
         self.force = force

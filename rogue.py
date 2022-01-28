@@ -91,6 +91,7 @@ while True:
         draw_tile(perso.x, perso.y, (255, 0, 0))
     
 
-    draw_room(5, 7, 15, 12)
+    draw_room(5, 7, 10, 10)
+    draw_room(20, 7, 7, 8)
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()
