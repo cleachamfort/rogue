@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pygame as pg
 import personnage as perso
+import room
 
 # on initialise pygame et on crée une fenêtre de 400x300 pixels
 pg.init()
@@ -40,25 +41,15 @@ def draw_tile(x, y, color):
     pg.draw.rect(screen, color, rect)
 
 
-def draw_room(x, y, lenght, width, x_porte, y_porte):
-    rect_haut = pg.Rect(x*W, y*H, W*width, H)
-    pg.draw.rect(screen, (0, 0, 255), rect_haut)
-    rect_gauche = pg.Rect(x*W, y*H, W, H*lenght)
-    rect_droite = pg.Rect((x+width)*W, y*H, W, H*(lenght+1))
-    rect_bas = pg.Rect(x*W, (y+lenght)*H, W*width, H)
-    rect_porte = pg.Rect(x_porte*W, y_porte*H, W, H)
-    pg.draw.rect(screen, (0, 0, 255), rect_bas)
-    pg.draw.rect(screen, (0, 0, 255), rect_gauche)
-    pg.draw.rect(screen, (0, 0, 255), rect_droite)
-    pg.draw.rect(screen, (255, 0, 0), rect_porte)
+
 
 perso = perso.Personnage(7,12,10,10,[0,1])
 
 # enfin on boucle à l'infini pour faire le rendu de chaque image
-while True:
+while running:
     # l'objet "clock" permet de limiter le nombre d'images par secondes
     # ici pour cette démo on demande 1 image par seconde
-    clock.tick(1)
+    clock.tick(5)
 
     # on itère sur tous les évènements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
