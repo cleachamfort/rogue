@@ -1,5 +1,7 @@
 import pygame as pg
 import numpy as np
+import objets
+
 
 class personnage:
     def __init__(self, xinit, yinit, vie, force, direction):
@@ -11,7 +13,14 @@ class personnage:
         self.y = yinit
         self.direction=direction
 
-personnage = personnage(0,0,10,10,[0,1])
+        def ramasser(self):
+            case_devant = np.add(personnage.position,personnage.direction)
+            global sac
+            liste_objets = sac.contenu
+            for obj in liste_objets :
+                if obj.position == case_devant:
+                    sac.add(obj)
+                    break
 
 # def deplacement ():
 #     while (running== True ):

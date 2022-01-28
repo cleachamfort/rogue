@@ -1,6 +1,6 @@
 #on commence par créer le sac et une classe objets 
 
-def class(sac):
+class sac:
     def __init__(self,taille,capacite,contenu):
         #contenu est une liste, la taille est le nb actuel d'elts dans le sac
         self.taille = taille 
@@ -24,7 +24,7 @@ def class(sac):
     
 
 
-def class(objet):
+class objet:
     def __init__(self,nature,valeur,description,position):
         self.nature = nature
         self.valeur = valeur 
@@ -54,7 +54,7 @@ def class(objet):
                 perso.vie += self.valeur
     
     
-def class(piece(objet)):
+class piece(objet):
     def __init__(self,):
         super(piece, self).__init__(nature,valeur,description)
     def soudoyer(self, seuil):

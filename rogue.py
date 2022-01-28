@@ -1,7 +1,7 @@
 ##blabla
 import numpy as np 
 import matplotlib.pyplot as plt
-import pygame as pg
+import pygame as p
 import personnage
 
 # on initialise pygame et on crée une fenêtre de 400x300 pixels
