@@ -22,11 +22,14 @@ def class(sac):
         else : 
             return ("Vous ne possédez pas l'objet")
     
+
+
 def class(objet):
-    def __init__(self,nature,valeur,description):
+    def __init__(self,nature,valeur,description,position):
         self.nature = nature
         self.valeur = valeur 
         self.description = description
+        self.position = position
     def manger(self):
         if self.nature == "nourriture":
             if #le personnage a fait l'action de ramasser et que tu es devant:
