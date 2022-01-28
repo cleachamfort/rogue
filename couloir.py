@@ -18,6 +18,13 @@ class Couloir:
             
 
 
+    def draw_couloir(couloir):
+        for i in range(len(couloir)):
+            couloir_rect = pg.Rect(couloir[i][0]*W, couloir[i][1]*H, W, H)
+            pg.draw.rect(screen, (255,127, 0), couloir_rect)
+
+
+
 
         
 

@@ -2,9 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pygame as pg
 import personnage as perso
-import couloir
-import room
-
+from room import * 
+from couloir import * 
 
 # on initialise pygame et on crée une fenêtre de 400x300 pixels
 pg.init()
@@ -13,15 +12,13 @@ screen = pg.display.set_mode((600, 600))
 clock = pg.time.Clock()
 running = True
 
+room1 = Room(5, 7, 10, 10,15, 11)
+room2 = Room(20, 7, 7, 8, 20, 11)
+actual_room = room1
+perso = perso.Personnage(7,12,10,10, actual_room)
+
 W, H = 20, 20
 X, Y = 30, 30
-
-# DIRECTIONS = {
-#     'DOWN': (0, -1),
-#     'UP': (0, 1),
-#     'RIGHT': (1, 0),
-#     'LEFT': (-1, 0),
-# }
 
 WHITE = (240, 240, 240)
 BLACK = (255, 255, 255)
@@ -33,6 +30,11 @@ def draw_background():
             if (x+y) % 2 == 0:
                 draw_tile(x, y, BLACK)
 
+def draw_couloir(couloir):
+        for i in range(len(couloir)):
+            couloir_rect = pg.Rect(couloir[i][0]*W, couloir[i][1]*H, W, H)
+            pg.draw.rect(screen, (255,127, 0), couloir_rect)
+
 
 def draw_tile(x, y, color):
     """
@@ -42,6 +44,7 @@ def draw_tile(x, y, color):
     rect = pg.Rect(x*W, y*H, W, H)
     pg.draw.rect(screen, color, rect)
 
+<<<<<<< HEAD
 
 def draw_room(x, y, lenght, width, x_porte, y_porte):
     rect_haut = pg.Rect(x*W, y*H, W*width, H)
@@ -65,11 +68,14 @@ perso = perso.Personnage(7,12,10,10)
 corridor = couloir.Couloir([[15,11],[16,11], [17, 11], [18,11], [19,11],[20,11]])
 
 
+=======
+>>>>>>> 004e57937d7fc8b0d6cba338a0934571c698bc3f
 # enfin on boucle à l'infini pour faire le rendu de chaque image
 while running:
     direction=[0,0]
     # l'objet "clock" permet de limiter le nombre d'images par secondes
     # ici pour cette démo on demande 1 image par seconde
+<<<<<<< HEAD
     clock.tick(5)
     bool , message = couloir.Couloir.is_in_couloir (corridor.cases,perso.x, perso.y)
     if bool == True:
@@ -81,6 +87,10 @@ while running:
         elif message == "end":
             perso.x = corridor.cases[0][0] - 1
             perso.y = corridor.cases[0][1]
+=======
+    clock.tick(1)
+
+>>>>>>> 004e57937d7fc8b0d6cba338a0934571c698bc3f
     # on itère sur tous les évènements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
     for event in pg.event.get():
@@ -95,20 +105,21 @@ while running:
             if event.key == pg.K_q:
                 running = False
             elif event.key == pg.K_UP :
-                perso.y = perso.y - 1
                 direction=np.array([1,0])
-                running=True
+                if perso.perso_can_move(direction) :
+                    perso.y = perso.y - 1
             elif event.key == pg.K_DOWN :
-                perso.y=perso.y + 1
                 direction=np.array([-1,0])
-                
+                if perso.perso_can_move(direction):
+                    perso.y=perso.y + 1
             elif event.key == pg.K_RIGHT :
-                perso.x =perso.x + 1 
                 direction=np.array([0,1])
+                if perso.perso_can_move(direction):
+                    perso.x =perso.x + 1 
             elif event.key == pg.K_LEFT :
-                perso.x =perso.x - 1
                 direction=np.array([-1,0])
-        
+                if perso. perso_can_move(direction):
+                    perso.x =perso.x -1
 
         draw_background()
         draw_tile(perso.x, perso.y, (255, 0, 0))
@@ -116,5 +127,22 @@ while running:
     draw_room(5, 7, 10, 10,15, 11)
     draw_room(20, 7, 7, 8, 20, 11)
 
+
+    draw_background()
+    room1.draw_room()
+    room2.draw_room()
+    draw_couloir([[16,11], [17, 11], [18,11], [19,11]])
+    
+    draw_tile(perso.x, perso.y, (255, 0, 0))
+    
+    
+
+    
+
+    #draw_room(5, 7, 15, 12, 5, 15)
+
+    draw_room(5, 7, 15, 12)
+
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()
+

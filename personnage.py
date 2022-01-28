@@ -24,18 +24,19 @@ def deplacement_mechant (mechant):
             mechant.x =mechant.x + 1
 
 class Personnage:
-    def __init__(self, xinit, yinit, vie, force):
+    def __init__(self, xinit, yinit, vie, force, room):
         self.vie = vie
         self.force = force
         self.x = xinit
         self.y = yinit
+        self.in_room = room
 
-    def perso_can_move(self, direction, room):
+    def perso_can_move(self, direction):
         x_pos=self.x + direction[0]
         y_pos=self.y + direction[1]
-        if (is_in_room(x_pos,y_pos)) or (is_on_door(x_pos, y_pos)):
-            return(True)
-        return(False)
+        if (self.in_room.is_in_room(x_pos,y_pos)) or (self.in_room.is_on_door(x_pos, y_pos)):
+            return True 
+        return False
     
     
 
