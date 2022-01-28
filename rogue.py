@@ -40,15 +40,23 @@ def draw_tile(x, y, color):
     pg.draw.rect(screen, color, rect)
 
 
-def draw_room(x, y, lenght, width):
+def draw_room(x, y, lenght, width, x_porte, y_porte):
     rect_haut = pg.Rect(x*W, y*H, W*width, H)
-    rect_gauche = pg.Rect(x*W, y*H, W, H*lenght)
-    rect_droite = pg.Rect((x+width)*W, y*H, W, H*(lenght+1))
-    rect_bas = pg.Rect(x*W, (y+lenght)*H, W*width, H)
     pg.draw.rect(screen, (0, 0, 255), rect_haut)
-    pg.draw.rect(screen, (0, 0, 255), rect_bas)
+    rect_gauche = pg.Rect(x*W, y*H, W, H*lenght)
     pg.draw.rect(screen, (0, 0, 255), rect_gauche)
+    rect_droite = pg.Rect((x + width)*W, y*H, W, H*(lenght+1))
+    rect_bas = pg.Rect(x*W, (y+lenght)*H, W*width, H)
+    rect_porte = pg.Rect(x_porte*W, y_porte*H, W, H)
+    pg.draw.rect(screen, (0, 0, 255), rect_bas)
     pg.draw.rect(screen, (0, 0, 255), rect_droite)
+    pg.draw.rect(screen, (139, 69, 19), rect_porte)
+
+
+def draw_couloir(couloir):
+    for i in range(len(couloir)):
+        couloir_rect = pg.Rect(couloir[i][0]*W, couloir[i][1]*H, W, H)
+        pg.draw.rect(screen, (255,127, 0), couloir_rect)
 
 perso = perso.Personnage(7,12,10,10)
 
@@ -57,7 +65,7 @@ while True:
     direction=[0,0]
     # l'objet "clock" permet de limiter le nombre d'images par secondes
     # ici pour cette démo on demande 1 image par seconde
-    clock.tick(1)
+    clock.tick(5)
 
     # on itère sur tous les évènements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
@@ -91,8 +99,10 @@ while True:
         draw_background()
         draw_tile(perso.x, perso.y, (255, 0, 0))
     
+    draw_couloir([[16,11], [17, 11], [18,11], [19,11]])
 
-    draw_room(5, 7, 10, 10)
-    draw_room(20, 7, 7, 8)
+    draw_room(5, 7, 10, 10,15, 11)
+    draw_room(20, 7, 7, 8, 20, 11)
+
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()
