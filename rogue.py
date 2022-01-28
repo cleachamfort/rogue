@@ -29,3 +29,4 @@ while True:
                 running = False
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()
+pygame.quit()
