@@ -27,3 +27,5 @@ while True:
             # si la touche est "Q" on veut quitter le programme
             if event.key == pg.K_q:
                 running = False
+    # enfin on met à jour la fenêtre avec tous les changements
+    pg.display.update()
