@@ -49,7 +49,7 @@ while running:
     direction=[0,0]
     # l'objet "clock" permet de limiter le nombre d'images par secondes
     # ici pour cette démo on demande 1 image par seconde
-    clock.tick(5)
+    clock.tick(1)
 
     # on itère sur tous les évènements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
@@ -94,5 +94,7 @@ while running:
 
     #draw_room(5, 7, 15, 12, 5, 15)
 
+    draw_room(5, 7, 15, 12)
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()
+
