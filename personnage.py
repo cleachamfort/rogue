@@ -1,15 +1,34 @@
 import pygame as pg
 import numpy as np
 import objets
+import random as rd
 
 
-class Personnage:
-    def __init__(self, xinit, yinit, vie, force, direction):
+class Mechant : 
+    def __init__(self, xinit, yinit, vie, force):
         self.vie = vie
         self.force = force
         self.x = xinit
         self.y = yinit
-        self.direction=direction
+def deplacement_mechant (mechant):
+    while (running== True ):
+        direction = rd.randint(0,3)
+        if direction == 0 : 
+            #on considère que ça veut dire up 
+            mechant.y = mechant.y - 1
+        elif direction == 1 :
+            mechant.y=mechant.y - 1
+        elif direction == 2 :
+            mechant.x = mechant.x + 1 
+        else :
+            mechant.x =mechant.x + 1
+
+class Personnage:
+    def __init__(self, xinit, yinit, vie, force):
+        self.vie = vie
+        self.force = force
+        self.x = xinit
+        self.y = yinit
 
 personnage = Personnage(0,0,10,10,[0,1])
         
@@ -22,7 +41,7 @@ personnage = Personnage(0,0,10,10,[0,1])
     #             self.add(obj)
     #             break
 
-def deplacement ():
+def deplacement (perso):
     while (running== True ):
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -33,16 +52,15 @@ def deplacement ():
                 if event.key == pg.K_q:
                     running = False
                 elif event.key == pg.K_UP :
-                    personnage.y = personnage.y - 1
-                    personnage.direction=np.array([1,0])
+                    perso.y = perso.y - 1
+                    perso.direction=np.array([1,0])
                 elif event.key == pg.K_DOWN :
-                    personnage.y=personnage.y - 1
-                    personnage.direction=np.array([-1,0])
-                    personnage.direction
+                    perso.y=perso.y - 1
+                    perso.direction=np.array([-1,0])
+                    perso.direction
                 elif event.key == pg.K_RIGHT :
-                    personnage.x =personnage.x + 1 
-                    personnage.direction=np.array([0,1])
+                    perso.x =perso.x + 1 
+                    perso.direction=np.array([0,1])
                 elif event.key == pg.K_LEFT :
-                    personnage.x =personnage.x + 1
-                    personnage.direction=np.array([-1,0])
-    
+                    perso.x =perso.x + 1
+                    perso.direction=np.array([-1,0])
