@@ -20,7 +20,7 @@ class Personnage:
         #             self.add(obj)
         #             break
 
-def deplacement ():
+def deplacement (perso):
     while (running== True ):
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -31,16 +31,16 @@ def deplacement ():
                 if event.key == pg.K_q:
                     running = False
                 elif event.key == pg.K_UP :
-                    personnage.y = personnage.y - 1
-                    personnage.direction=np.array([1,0])
+                    perso.y = perso.y - 1
+                    perso.direction=np.array([1,0])
                 elif event.key == pg.K_DOWN :
-                    personnage.y=personnage.y - 1
-                    personnage.direction=np.array([-1,0])
-                    personnage.direction
+                    perso.y=perso.y - 1
+                    perso.direction=np.array([-1,0])
+                    perso.direction
                 elif event.key == pg.K_RIGHT :
-                    personnage.x =personnage.x + 1 
-                    personnage.direction=np.array([0,1])
+                    perso.x =perso.x + 1 
+                    perso.direction=np.array([0,1])
                 elif event.key == pg.K_LEFT :
-                    personnage.x =personnage.x + 1
-                    personnage.direction=np.array([-1,0])
+                    perso.x =perso.x + 1
+                    perso.direction=np.array([-1,0])
     
