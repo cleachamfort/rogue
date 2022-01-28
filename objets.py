@@ -23,10 +23,40 @@ def class(sac):
             return ("Vous ne possédez pas l'objet")
     
 def class(objet):
-    def __init__(self,nature,valeur):
+    def __init__(self,nature,valeur,description):
         self.nature = nature
         self.valeur = valeur 
+        self.description = description
     def manger(self):
         if self.nature == "nourriture":
             if #le personnage a fait l'action de ramasser et que tu es devant:
                 perso.satiete += self.valeur
+        else : 
+            return ("Ce n'est pas de la nourriture")
+    def boire(self):
+        if self.nature == "potion":
+            agir(self.valeur) #je dois implémenter la fn pour que agir marche
+            #les self.valeur vont être de classe magie 
+        else : 
+            return ("Ce n'est pas potable")
+    def attaquer(self,ennemi):
+        if self.nature == "arme":
+            
+    
+def class(piece(objet)):
+    def __init__(self,):
+        super(piece, self).__init__(nature,valeur,description)
+    def soudoyer(self, seuil):
+        #à partir du seuil, si la valeur en pièces est au dessus, on peut 
+        #soudoyer le gardien 
+        if self.valeur >=seuil : 
+            gardien.pop() #en vrai c'est pas une fonction mais il faut que le gardien disparaisse
+            self.valeur-=seuil
+        else : 
+            pass
+    def acheter(self,prix,objet,sac):
+        if self.valeur>=prix :
+            self.valeur-= prix
+            sac.add(sac,objet)
+        else : 
+            pass
