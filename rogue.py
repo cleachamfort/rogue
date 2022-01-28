@@ -2,6 +2,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 import pygame as pg
+import personnage
 
 # on initialise pygame et on crée une fenêtre de 400x300 pixels
 pg.init()
@@ -39,11 +40,6 @@ def draw_tile(x, y, color):
     rect = pg.Rect(x*W, y*H, W, H)
     pg.draw.rect(screen, color, rect)
 
-# def draw_room(x, y, lenght, width):
-#     pg.draw.line(screen, (0, 0, 255), (x*W, y*H), (x*W, (y+lenght)*H), 20)
-#     pg.draw.line(screen, (0, 0, 255), (x*W, y*H), ((x+width)*W, y*H), 20)
-#     pg.draw.line(screen, (0, 0, 255), (x*W, (y+lenght)*H), ((x+width)*W, (y+lenght)*H), 20)
-#     pg.draw.line(screen, (0, 0, 255), ((x+width)*W, y*H), ((x+width)*W, (y+lenght)*H), 20)
 
 def draw_room(x, y, lenght, width):
     rect_haut = pg.Rect(x*W, y*H, W*width, H)
@@ -55,6 +51,7 @@ def draw_room(x, y, lenght, width):
     pg.draw.rect(screen, (0, 0, 255), rect_gauche)
     pg.draw.rect(screen, (0, 0, 255), rect_droite)
 
+personnage = personnage(0,0,10,10,[0,1])
 
 # enfin on boucle à l'infini pour faire le rendu de chaque image
 while running:
@@ -69,11 +66,25 @@ while running:
         # un type de pg.QUIT signifie que l'on a cliqué sur la "croix" de la fenêtre
         if event.type == pg.QUIT:
             running = False
+            break
         # un type de pg.KEYDOWN signifie que l'on a appuyé une touche du clavier
         elif event.type == pg.KEYDOWN:
             # si la touche est "Q" on veut quitter le programme
             if event.key == pg.K_q:
                 running = False
+            elif event.key == pg.K_UP :
+                personnage.y = personnage.y - 1
+                personnage.direction=np.array([1,0])
+            elif event.key == pg.K_DOWN :
+                personnage.y=personnage.y - 1
+                personnage.direction=np.array([-1,0])
+                personnage.direction
+            elif event.key == pg.K_RIGHT :
+                personnage.x =personnage.x + 1 
+                personnage.direction=np.array([0,1])
+            elif event.key == pg.K_LEFT :
+                personnage.x =personnage.x + 1
+                personnage.direction=np.array([-1,0])
 
     draw_background()
     draw_tile(3, 5, (255, 0, 0))
@@ -82,3 +93,4 @@ while running:
 
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()
+pg.quit()
