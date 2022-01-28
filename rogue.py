@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import pygame as pg
 import personnage as perso
 import couloir
+import room
+
 
 # on initialise pygame et on crée une fenêtre de 400x300 pixels
 pg.init()
@@ -59,10 +61,11 @@ def draw_couloir(couloir):
         couloir_rect = pg.Rect(couloir[i][0]*W, couloir[i][1]*H, W, H)
         pg.draw.rect(screen, (255,127, 0), couloir_rect)
 
-perso = perso.Personnage(7,12,10,10,[0,1])
+perso = perso.Personnage(7,12,10,10)
 
 # enfin on boucle à l'infini pour faire le rendu de chaque image
 while True:
+    direction=[0,0]
     # l'objet "clock" permet de limiter le nombre d'images par secondes
     # ici pour cette démo on demande 1 image par seconde
     clock.tick(5)
@@ -93,18 +96,18 @@ while True:
                 running = False
             elif event.key == pg.K_UP :
                 perso.y = perso.y - 1
-                perso.direction=np.array([1,0])
+                direction=np.array([1,0])
                 running=True
             elif event.key == pg.K_DOWN :
                 perso.y=perso.y + 1
-                perso.direction=np.array([-1,0])
+                direction=np.array([-1,0])
                 
             elif event.key == pg.K_RIGHT :
                 perso.x =perso.x + 1 
-                perso.direction=np.array([0,1])
+                direction=np.array([0,1])
             elif event.key == pg.K_LEFT :
                 perso.x =perso.x + 1
-                perso.direction=np.array([-1,0])
+                direction=np.array([-1,0])
         
 
         draw_background()
@@ -114,6 +117,8 @@ while True:
 
     draw_room(5, 7, 10, 10,15, 11)
     draw_room(20, 7, 7, 8, 20, 11)
+
+    draw_room(5, 7, 15, 12, 5, 15)
 
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()
