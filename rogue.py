@@ -50,7 +50,7 @@ def draw_room(x, y, lenght, width):
     pg.draw.rect(screen, (0, 0, 255), rect_gauche)
     pg.draw.rect(screen, (0, 0, 255), rect_droite)
 
-perso = perso.Personnage(0,0,10,10,[0,1])
+perso = perso.Personnage(7,12,10,10,[0,1])
 
 # enfin on boucle à l'infini pour faire le rendu de chaque image
 while True:
@@ -74,19 +74,22 @@ while True:
             elif event.key == pg.K_UP :
                 perso.y = perso.y - 1
                 perso.direction=np.array([1,0])
+                running=True
             elif event.key == pg.K_DOWN :
-                perso.y=perso.y - 1
+                perso.y=perso.y + 1
                 perso.direction=np.array([-1,0])
-                perso.direction
+                
             elif event.key == pg.K_RIGHT :
                 perso.x =perso.x + 1 
                 perso.direction=np.array([0,1])
             elif event.key == pg.K_LEFT :
-                perso.x =perso.x + 1
+                perso.x =perso.x - 1
                 perso.direction=np.array([-1,0])
+        
 
-    draw_background()
-    draw_tile(3, 5, (255, 0, 0))
+        draw_background()
+        draw_tile(perso.x, perso.y, (255, 0, 0))
+    
 
     draw_room(5, 7, 15, 12)
     # enfin on met à jour la fenêtre avec tous les changements
