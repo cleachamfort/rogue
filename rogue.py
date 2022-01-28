@@ -50,13 +50,18 @@ def draw_room(x, y, lenght, width):
     pg.draw.rect(screen, (0, 0, 255), rect_gauche)
     pg.draw.rect(screen, (0, 0, 255), rect_droite)
 
+def draw_couloir(couloir):
+    for i in range(len(couloir)):
+        couloir_rect = pg.Rect(couloir[i][0]*W, couloir[i][1]*H, W, H)
+        pg.draw.rect(screen, (255,127, 0), couloir_rect)
+
 perso = perso.Personnage(7,12,10,10,[0,1])
 
 # enfin on boucle à l'infini pour faire le rendu de chaque image
 while True:
     # l'objet "clock" permet de limiter le nombre d'images par secondes
     # ici pour cette démo on demande 1 image par seconde
-    clock.tick(1)
+    clock.tick(5)
 
     # on itère sur tous les évènements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
@@ -92,5 +97,6 @@ while True:
     
 
     draw_room(5, 7, 15, 12)
+    draw_couloir([[0,0], [0,1]])
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()
