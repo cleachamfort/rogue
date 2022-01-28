@@ -16,10 +16,10 @@ class personnage:
         def ramasser(self):
             case_devant = np.add(personnage.position,personnage.direction)
             global sac
-            liste_objets = sac.contenu
+            liste_objets = self.contenu
             for obj in liste_objets :
                 if obj.position == case_devant:
-                    sac.add(obj)
+                    self.add(obj)
                     break
 
 def deplacement ():
