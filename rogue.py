@@ -1,8 +1,7 @@
-##blabla
 import numpy as np 
 import matplotlib.pyplot as plt
-import pygame as p
-import personnage
+import pygame as pg
+import personnage as perso
 
 # on initialise pygame et on crée une fenêtre de 400x300 pixels
 pg.init()
@@ -51,15 +50,15 @@ def draw_room(x, y, lenght, width):
     pg.draw.rect(screen, (0, 0, 255), rect_gauche)
     pg.draw.rect(screen, (0, 0, 255), rect_droite)
 
-personnage = personnage(0,0,10,10,[0,1])
+perso = perso.Personnage(0,0,10,10,[0,1])
 
 # enfin on boucle à l'infini pour faire le rendu de chaque image
-while running:
+while True:
     # l'objet "clock" permet de limiter le nombre d'images par secondes
     # ici pour cette démo on demande 1 image par seconde
     clock.tick(1)
 
-    # on itère sur tous les évênements qui ont eu lieu depuis le précédent appel
+    # on itère sur tous les évènements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
     for event in pg.event.get():
         # chaque évênement à un type qui décrit la nature de l'évênement
@@ -73,24 +72,22 @@ while running:
             if event.key == pg.K_q:
                 running = False
             elif event.key == pg.K_UP :
-                personnage.y = personnage.y - 1
-                personnage.direction=np.array([1,0])
+                perso.y = perso.y - 1
+                perso.direction=np.array([1,0])
             elif event.key == pg.K_DOWN :
-                personnage.y=personnage.y - 1
-                personnage.direction=np.array([-1,0])
-                personnage.direction
+                perso.y=perso.y - 1
+                perso.direction=np.array([-1,0])
+                perso.direction
             elif event.key == pg.K_RIGHT :
-                personnage.x =personnage.x + 1 
-                personnage.direction=np.array([0,1])
+                perso.x =perso.x + 1 
+                perso.direction=np.array([0,1])
             elif event.key == pg.K_LEFT :
-                personnage.x =personnage.x + 1
-                personnage.direction=np.array([-1,0])
+                perso.x =perso.x + 1
+                perso.direction=np.array([-1,0])
 
     draw_background()
     draw_tile(3, 5, (255, 0, 0))
 
     draw_room(5, 7, 15, 12)
-
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()
-pg.quit()

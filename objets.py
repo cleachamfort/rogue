@@ -32,7 +32,7 @@ class Objet:
         self.position = position
     def manger(self):
         if self.nature == "nourriture":
-            if #le personnage a fait l'action de ramasser et que tu es devant:
+            if np.add(perso.position,perso.direction)==self.position and #il ramasse:
                 perso.satiete += self.valeur
         else : 
             return ("Ce n'est pas de la nourriture")
