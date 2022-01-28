@@ -41,17 +41,19 @@ def draw_tile(x, y, color):
     pg.draw.rect(screen, color, rect)
 
 
-def draw_room(x, y, lenght, width):
+def draw_room(x, y, lenght, width, x_porte, y_porte):
     rect_haut = pg.Rect(x*W, y*H, W*width, H)
+    pg.draw.rect(screen, (0, 0, 255), rect_haut)
     rect_gauche = pg.Rect(x*W, y*H, W, H*lenght)
     rect_droite = pg.Rect((x+width)*W, y*H, W, H*(lenght+1))
     rect_bas = pg.Rect(x*W, (y+lenght)*H, W*width, H)
-    pg.draw.rect(screen, (0, 0, 255), rect_haut)
+    rect_porte = pg.Rect(x_porte*W, y_porte*H, W, H)
     pg.draw.rect(screen, (0, 0, 255), rect_bas)
     pg.draw.rect(screen, (0, 0, 255), rect_gauche)
     pg.draw.rect(screen, (0, 0, 255), rect_droite)
+    pg.draw.rect(screen, (255, 0, 0), rect_porte)
 
-personnage = personnage(0,0,10,10,[0,1])
+# personnage = personnage(0,0,10,10,[0,1])
 
 # enfin on boucle à l'infini pour faire le rendu de chaque image
 while running:
@@ -72,24 +74,23 @@ while running:
             # si la touche est "Q" on veut quitter le programme
             if event.key == pg.K_q:
                 running = False
-            elif event.key == pg.K_UP :
-                personnage.y = personnage.y - 1
-                personnage.direction=np.array([1,0])
-            elif event.key == pg.K_DOWN :
-                personnage.y=personnage.y - 1
-                personnage.direction=np.array([-1,0])
-                personnage.direction
-            elif event.key == pg.K_RIGHT :
-                personnage.x =personnage.x + 1 
-                personnage.direction=np.array([0,1])
-            elif event.key == pg.K_LEFT :
-                personnage.x =personnage.x + 1
-                personnage.direction=np.array([-1,0])
+            # elif event.key == pg.K_UP :
+            #     personnage.y = personnage.y - 1
+            #     personnage.direction=np.array([1,0])
+            # elif event.key == pg.K_DOWN :
+            #     personnage.y=personnage.y - 1
+            #     personnage.direction=np.array([-1,0])
+            #     personnage.direction
+            # elif event.key == pg.K_RIGHT :
+            #     personnage.x =personnage.x + 1 
+            #     personnage.direction=np.array([0,1])
+            # elif event.key == pg.K_LEFT :
+            #     personnage.x =personnage.x + 1
+            #     personnage.direction=np.array([-1,0])
 
     draw_background()
-    draw_tile(3, 5, (255, 0, 0))
 
-    draw_room(5, 7, 15, 12)
+    draw_room(5, 7, 15, 12, 5, 15)
 
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()

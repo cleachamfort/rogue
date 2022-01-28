@@ -1,7 +1,7 @@
 import pygame as pg
 import numpy as np
 
-class personnage:
+class Personnage:
     def __init__(self, xinit, yinit, vie, force, direction):
         self.xinit = xinit
         self.yinit = yinit
@@ -11,7 +11,7 @@ class personnage:
         self.y = yinit
         self.direction=direction
 
-personnage = personnage(0,0,10,10,[0,1])
+personnage = Personnage(0,0,10,10,[0,1])
 
 # def deplacement ():
 #     while (running== True ):
