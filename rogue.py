@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pygame as pg
 import personnage as perso
+import couloir
 
 # on initialise pygame et on crée une fenêtre de 400x300 pixels
 pg.init()
@@ -75,6 +76,17 @@ while True:
             running = False
             break
         # un type de pg.KEYDOWN signifie que l'on a appuyé une touche du clavier
+        # bool , message = couloir.is_in_couloir (couloir, perso.x, perso.y)
+        # if bool == True:
+        #     if message == "begin":
+        #         # Le personnage va passer automatiquement dans le couloir
+        #     for i in range(len(self)):
+        #         clock.tick(1)
+        #         personnage.x = self.cases[i][0]
+        #         personnage.y = self.cases[i][1]
+        #         pg.display.update()
+        #     elif message == "end":
+
         elif event.type == pg.KEYDOWN:
             # si la touche est "Q" on veut quitter le programme
             if event.key == pg.K_q:
@@ -97,8 +109,8 @@ while True:
 
         draw_background()
         draw_tile(perso.x, perso.y, (255, 0, 0))
-    
-    draw_couloir([[16,11], [17, 11], [18,11], [19,11]])
+    couloir = [[16,11], [17, 11], [18,11], [19,11]]
+    draw_couloir(couloir)
 
     draw_room(5, 7, 10, 10,15, 11)
     draw_room(20, 7, 7, 8, 20, 11)

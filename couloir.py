@@ -1,4 +1,5 @@
 import pygame as pg
+from pyrsistent import T
 import personnage
 
 
@@ -21,6 +22,16 @@ class Couloir:
                 personnage.x = self.cases[i][0]
                 personnage.y = self.cases[i][1]
                 pg.display.update()
+
+    def is_in_couloir (self, x,y):
+        if [x,y] == self.cases[0]:
+            return (True, "begin")
+        elif [x,y] == self.cases[-1]:
+            return (True, "end")
+        else: 
+            return (False, "Nope")
+
+            
 
 
 
