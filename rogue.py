@@ -64,7 +64,7 @@ def draw_couloir(couloir):
 perso = perso.Personnage(7,12,10,10)
 
 # enfin on boucle à l'infini pour faire le rendu de chaque image
-while True:
+while running:
     direction=[0,0]
     # l'objet "clock" permet de limiter le nombre d'images par secondes
     # ici pour cette démo on demande 1 image par seconde
@@ -106,7 +106,7 @@ while True:
                 perso.x =perso.x + 1 
                 direction=np.array([0,1])
             elif event.key == pg.K_LEFT :
-                perso.x =perso.x + 1
+                perso.x =perso.x - 1
                 direction=np.array([-1,0])
         
 

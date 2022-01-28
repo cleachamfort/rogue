@@ -1,5 +1,5 @@
 import pygame as pg
-from pyrsistent import T
+#from pyrsistent import T
 import personnage
 
 
