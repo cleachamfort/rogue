@@ -45,7 +45,11 @@ def class(objet):
             ennemi.vie-=self.valeur[1]
         else : 
             return ("Ceci n'est pas une arme")
-
+    def proteger(self):
+        if self.nature == "casque" or "armure":
+            if #un ennemi l'attaque:
+                perso.vie += self.valeur
+    
     
 def class(piece(objet)):
     def __init__(self,):
