@@ -1,7 +1,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 import pygame as pg
-import personnage
+import personnage as perso
 
 # on initialise pygame et on crée une fenêtre de 400x300 pixels
 pg.init()
@@ -50,7 +50,7 @@ def draw_room(x, y, lenght, width):
     pg.draw.rect(screen, (0, 0, 255), rect_gauche)
     pg.draw.rect(screen, (0, 0, 255), rect_droite)
 
-personnage = personnage(0,0,10,10,[0,1])
+perso = perso.Personnage(0,0,10,10,[0,1])
 
 # enfin on boucle à l'infini pour faire le rendu de chaque image
 while True:
@@ -72,18 +72,18 @@ while True:
             if event.key == pg.K_q:
                 running = False
             elif event.key == pg.K_UP :
-                personnage.y = personnage.y - 1
-                personnage.direction=np.array([1,0])
+                perso.y = perso.y - 1
+                perso.direction=np.array([1,0])
             elif event.key == pg.K_DOWN :
-                personnage.y=personnage.y - 1
-                personnage.direction=np.array([-1,0])
-                personnage.direction
+                perso.y=perso.y - 1
+                perso.direction=np.array([-1,0])
+                perso.direction
             elif event.key == pg.K_RIGHT :
-                personnage.x =personnage.x + 1 
-                personnage.direction=np.array([0,1])
+                perso.x =perso.x + 1 
+                perso.direction=np.array([0,1])
             elif event.key == pg.K_LEFT :
-                personnage.x =personnage.x + 1
-                personnage.direction=np.array([-1,0])
+                perso.x =perso.x + 1
+                perso.direction=np.array([-1,0])
 
     draw_background()
     draw_tile(3, 5, (255, 0, 0))
