@@ -13,14 +13,14 @@ class personnage:
         self.y = yinit
         self.direction=direction
 
-        def ramasser(self):
-            case_devant = np.add(personnage.position,personnage.direction)
-            global sac
-            liste_objets = self.contenu
-            for obj in liste_objets :
-                if obj.position == case_devant:
-                    self.add(obj)
-                    break
+        # def ramasser(self):
+        #     case_devant = np.add(personnage.position,personnage.direction)
+        #     global sac
+        #     liste_objets = self.contenu
+        #     for obj in liste_objets :
+        #         if obj.position == case_devant:
+        #             self.add(obj)
+        #             break
 
 def deplacement ():
     while (running== True ):
