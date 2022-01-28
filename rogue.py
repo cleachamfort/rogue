@@ -83,7 +83,7 @@ while True:
                 perso.x =perso.x + 1 
                 perso.direction=np.array([0,1])
             elif event.key == pg.K_LEFT :
-                perso.x =perso.x - 1
+                perso.x =perso.x + 1
                 perso.direction=np.array([-1,0])
         
 
