@@ -2,9 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pygame as pg
 import personnage as perso
-import couloir
-import room
-
 
 # on initialise pygame et on crée une fenêtre de 400x300 pixels
 pg.init()
@@ -43,32 +40,23 @@ def draw_tile(x, y, color):
     pg.draw.rect(screen, color, rect)
 
 
-def draw_room(x, y, lenght, width, x_porte, y_porte):
+def draw_room(x, y, lenght, width):
     rect_haut = pg.Rect(x*W, y*H, W*width, H)
-    pg.draw.rect(screen, (0, 0, 255), rect_haut)
     rect_gauche = pg.Rect(x*W, y*H, W, H*lenght)
-    pg.draw.rect(screen, (0, 0, 255), rect_gauche)
-    rect_droite = pg.Rect((x + width)*W, y*H, W, H*(lenght+1))
+    rect_droite = pg.Rect((x+width)*W, y*H, W, H*(lenght+1))
     rect_bas = pg.Rect(x*W, (y+lenght)*H, W*width, H)
-    rect_porte = pg.Rect(x_porte*W, y_porte*H, W, H)
+    pg.draw.rect(screen, (0, 0, 255), rect_haut)
     pg.draw.rect(screen, (0, 0, 255), rect_bas)
+    pg.draw.rect(screen, (0, 0, 255), rect_gauche)
     pg.draw.rect(screen, (0, 0, 255), rect_droite)
-    pg.draw.rect(screen, (139, 69, 19), rect_porte)
 
-
-def draw_couloir(couloir):
-    for i in range(len(couloir)):
-        couloir_rect = pg.Rect(couloir[i][0]*W, couloir[i][1]*H, W, H)
-        pg.draw.rect(screen, (255,127, 0), couloir_rect)
-
-perso = perso.Personnage(7,12,10,10)
-
+perso = perso.Personnage(7,12,10,10,[0,1])
+mechant = perso.Mechant(8,13,10,10)
 # enfin on boucle à l'infini pour faire le rendu de chaque image
-while running:
-    direction=[0,0]
+while True:
     # l'objet "clock" permet de limiter le nombre d'images par secondes
     # ici pour cette démo on demande 1 image par seconde
-    clock.tick(5)
+    clock.tick(1)
 
     # on itère sur tous les évènements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
@@ -79,46 +67,31 @@ while running:
             running = False
             break
         # un type de pg.KEYDOWN signifie que l'on a appuyé une touche du clavier
-        # bool , message = couloir.is_in_couloir (couloir, perso.x, perso.y)
-        # if bool == True:
-        #     if message == "begin":
-        #         # Le personnage va passer automatiquement dans le couloir
-        #     for i in range(len(self)):
-        #         clock.tick(1)
-        #         personnage.x = self.cases[i][0]
-        #         personnage.y = self.cases[i][1]
-        #         pg.display.update()
-        #     elif message == "end":
-
         elif event.type == pg.KEYDOWN:
             # si la touche est "Q" on veut quitter le programme
             if event.key == pg.K_q:
                 running = False
             elif event.key == pg.K_UP :
                 perso.y = perso.y - 1
-                direction=np.array([1,0])
+                perso.direction=np.array([1,0])
                 running=True
             elif event.key == pg.K_DOWN :
                 perso.y=perso.y + 1
-                direction=np.array([-1,0])
+                perso.direction=np.array([-1,0])
                 
             elif event.key == pg.K_RIGHT :
                 perso.x =perso.x + 1 
-                direction=np.array([0,1])
+                perso.direction=np.array([0,1])
             elif event.key == pg.K_LEFT :
                 perso.x =perso.x - 1
-                direction=np.array([-1,0])
+                perso.direction=np.array([-1,0])
         
 
         draw_background()
         draw_tile(perso.x, perso.y, (255, 0, 0))
-    couloir = [[16,11], [17, 11], [18,11], [19,11]]
-    draw_couloir(couloir)
+    
 
-    draw_room(5, 7, 10, 10,15, 11)
-    draw_room(20, 7, 7, 8, 20, 11)
-
-    draw_room(5, 7, 15, 12, 5, 15)
-
+    draw_room(5, 7, 15, 12)
     # enfin on met à jour la fenêtre avec tous les changements
     pg.display.update()
+
